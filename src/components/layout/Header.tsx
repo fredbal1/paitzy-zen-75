@@ -13,7 +13,8 @@ import {
   Calendar,
   Camera,
   Activity,
-  Settings
+  Settings,
+  type LucideIcon
 } from 'lucide-react';
 import {
   Sheet,
@@ -28,7 +29,7 @@ import { headerShrink, slideInRight, press, overlay } from '@/lib/motion/variant
 interface NavigationItem {
   label: string;
   href: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
 }
 
 const navigationItems: NavigationItem[] = [
@@ -84,6 +85,7 @@ export function Header() {
         variants={headerShrink}
         animate={isScrolled ? 'shrunk' : 'expanded'}
         className="sticky top-0 z-50 w-full safe-top bg-bg/95 backdrop-blur-sm border-b border-surface-3"
+        style={{ top: 'env(safe-area-inset-top, 0px)' }}
         role="banner"
       >
         <div className="section-wrapper">
@@ -92,10 +94,10 @@ export function Header() {
             <div className="flex items-center gap-6">
               <Link
                 to="/dashboard"
-                className="flex items-center gap-2 focus-ring rounded-neumo-md p-2"
+                className="flex items-center gap-2 focus-ring rounded-lg p-2"
                 aria-label="Paitzy - Accueil"
               >
-                <div className="w-8 h-8 neumo-inset rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 neumo-card rounded-full flex items-center justify-center">
                   <Heart size={18} className="text-brand" />
                 </div>
                 <span className="text-xl font-bold text-brand">Paitzy</span>
@@ -103,18 +105,19 @@ export function Header() {
 
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex" role="navigation" aria-label="Navigation principale">
-                <div className="neumo-inset rounded-neumo-lg p-1 flex">
+                <div className="neumo-card rounded-lg p-1 flex">
                   {navigationItems.map((item) => {
                     const isActive = isActiveRoute(item.href);
+                    const IconComponent = item.icon;
                     return (
                       <Link
                         key={item.href}
                         to={item.href}
                         className={`
-                          px-4 py-2 rounded-neumo-md text-sm font-medium transition-all focus-ring
+                          px-4 py-2 rounded-lg text-sm font-medium transition-all focus-ring
                           ${isActive 
-                            ? 'neumo-card text-text shadow-neumo bg-surface' 
-                            : 'text-text-muted hover:text-text hover:bg-surface/30'
+                            ? 'neumo-card text-text shadow-lg bg-surface' 
+                            : 'text-muted hover:text-text hover:bg-surface/30'
                           }
                         `}
                         aria-current={isActive ? 'page' : undefined}
@@ -132,7 +135,7 @@ export function Header() {
               {/* Add Button */}
               <motion.button
                 whileTap={press.tap}
-                className="neumo-button neumo-button--brand flex items-center gap-2 focus-ring"
+                className="neumo-card bg-brand text-white px-4 py-2 rounded-lg flex items-center gap-2 focus-ring min-h-[44px]"
                 aria-label="Ajouter un élément"
               >
                 <Plus size={16} />
@@ -142,7 +145,7 @@ export function Header() {
               {/* Notifications */}
               <motion.button
                 whileTap={press.tap}
-                className="neumo-button w-11 h-11 p-0 focus-ring"
+                className="neumo-card w-11 h-11 p-0 rounded-lg flex items-center justify-center focus-ring"
                 aria-label="Notifications"
               >
                 <Bell size={16} />
@@ -151,7 +154,7 @@ export function Header() {
               {/* Profile */}
               <motion.button
                 whileTap={press.tap}
-                className="neumo-button w-11 h-11 p-0 focus-ring"
+                className="neumo-card w-11 h-11 p-0 rounded-lg flex items-center justify-center focus-ring"
                 aria-label="Profil utilisateur"
               >
                 <User size={16} />
@@ -162,7 +165,7 @@ export function Header() {
                 <SheetTrigger asChild>
                   <motion.button
                     whileTap={press.tap}
-                    className="lg:hidden neumo-button w-11 h-11 p-0 focus-ring"
+                    className="lg:hidden neumo-card w-11 h-11 p-0 rounded-lg flex items-center justify-center focus-ring"
                     aria-label="Menu de navigation"
                   >
                     <Menu size={16} />
@@ -171,13 +174,13 @@ export function Header() {
 
                 <SheetContent 
                   side="right" 
-                  className="w-80 neumo-card border-surface-3 p-0"
+                  className="w-80 neumo-card border-surface bg-surface p-0"
                 >
-                  <SheetHeader className="p-6 border-b border-surface-3">
+                  <SheetHeader className="p-6 border-b border-surface-2">
                     <SheetTitle className="text-left text-xl font-bold text-brand">
                       Navigation
                     </SheetTitle>
-                    <SheetDescription className="text-left text-text-muted">
+                    <SheetDescription className="text-left text-muted">
                       Accédez aux différentes sections de l'application
                     </SheetDescription>
                   </SheetHeader>
@@ -189,30 +192,31 @@ export function Header() {
                   >
                     {navigationItems.map((item) => {
                       const isActive = isActiveRoute(item.href);
+                      const IconComponent = item.icon;
                       return (
                         <Link
                           key={item.href}
                           to={item.href}
                           className={`
-                            flex items-center gap-3 px-4 py-3 rounded-neumo-lg transition-all focus-ring
+                            flex items-center gap-3 px-4 py-3 rounded-lg transition-all focus-ring min-h-[44px]
                             ${isActive 
-                              ? 'neumo-card text-text bg-surface shadow-neumo' 
-                              : 'text-text-muted hover:text-text hover:bg-surface/30'
+                              ? 'neumo-card text-text bg-surface-2 shadow-lg' 
+                              : 'text-muted hover:text-text hover:bg-surface-2/30'
                             }
                           `}
                           aria-current={isActive ? 'page' : undefined}
                         >
-                          <item.icon size={20} />
+                          <IconComponent size={20} />
                           <span className="font-medium">{item.label}</span>
                         </Link>
                       );
                     })}
 
                     {/* Mobile Actions */}
-                    <div className="mt-6 pt-6 border-t border-surface-3 space-y-3">
+                    <div className="mt-6 pt-6 border-t border-surface-2 space-y-3">
                       <motion.button
                         whileTap={press.tap}
-                        className="w-full neumo-button neumo-button--brand flex items-center justify-center gap-2 focus-ring"
+                        className="w-full neumo-card bg-brand text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 focus-ring"
                       >
                         <Plus size={16} />
                         Ajouter un élément
@@ -221,17 +225,17 @@ export function Header() {
                       <div className="flex gap-3">
                         <motion.button
                           whileTap={press.tap}
-                          className="flex-1 neumo-button flex items-center justify-center gap-2 focus-ring"
+                          className="flex-1 neumo-card px-3 py-3 rounded-lg flex items-center justify-center gap-2 focus-ring"
                         >
                           <Bell size={16} />
-                          Notifications
+                          <span className="text-sm">Notifications</span>
                         </motion.button>
                         <motion.button
                           whileTap={press.tap}
-                          className="flex-1 neumo-button flex items-center justify-center gap-2 focus-ring"
+                          className="flex-1 neumo-card px-3 py-3 rounded-lg flex items-center justify-center gap-2 focus-ring"
                         >
                           <User size={16} />
-                          Profile
+                          <span className="text-sm">Profile</span>
                         </motion.button>
                       </div>
                     </div>

@@ -1,0 +1,281 @@
+
+@import url('@fontsource/inter/400.css');
+@import url('@fontsource/inter/500.css');
+@import url('@fontsource/inter/600.css');
+@import url('@fontsource/inter/700.css');
+
+@import './lib/design/tokens.css';
+@import './lib/design/neumorphism.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', ui-sans-serif, system-ui;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: contain;
+  }
+
+  /* Ensure minimum tap targets for accessibility */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  /* Focus styles for better accessibility */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  /* Smooth scroll snapping for carousels */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Custom scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--surface-2);
+    border-radius: var(--radius-full);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--text-soft);
+    border-radius: var(--radius-full);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
+  /* Hide scrollbar for clean mobile experience */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Component utilities */
+@layer components {
+  /* Section wrapper with consistent spacing */
+  .section-wrapper {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Content container with max-width */
+  .content-container {
+    @apply mx-auto max-w-7xl;
+  }
+
+  /* Card grid responsive patterns */
+  .grid-cards {
+    @apply grid gap-4 sm:gap-6;
+  }
+
+  .grid-cards--1 {
+    @apply grid-cols-1;
+  }
+
+  .grid-cards--2 {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+
+  .grid-cards--3 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .grid-cards--4 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  /* Responsive text sizes */
+  .text-display {
+    @apply text-3xl sm:text-4xl font-bold leading-tight;
+  }
+
+  .text-heading {
+    @apply text-2xl sm:text-3xl font-semibold leading-snug;
+  }
+
+  .text-subheading {
+    @apply text-lg sm:text-xl font-medium leading-snug;
+  }
+
+  /* Avatar sizing variations */
+  .avatar-sm {
+    @apply w-8 h-8 rounded-full;
+  }
+
+  .avatar-md {
+    @apply w-12 h-12 rounded-full;
+  }
+
+  .avatar-lg {
+    @apply w-16 h-16 rounded-full;
+  }
+
+  .avatar-xl {
+    @apply w-20 h-20 rounded-full;
+  }
+
+  /* Status color utilities */
+  .status-ok {
+    color: var(--success);
+    background-color: var(--success-soft);
+  }
+
+  .status-watch {
+    color: var(--warning);
+    background-color: var(--warning-soft);
+  }
+
+  .status-late {
+    color: var(--danger);
+    background-color: var(--danger-soft);
+  }
+
+  /* Loading states */
+  .skeleton {
+    @apply animate-pulse-soft bg-surface-2 rounded-neumo-lg;
+  }
+
+  /* Empty states */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-12 px-6 text-center;
+  }
+
+  .empty-state__icon {
+    @apply w-16 h-16 text-text-soft mb-4;
+  }
+
+  .empty-state__title {
+    @apply text-lg font-semibold text-text mb-2;
+  }
+
+  .empty-state__description {
+    @apply text-text-muted max-w-sm;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Safe area insets for mobile */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Aspect ratios for media */
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .aspect-photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Truncate text utilities */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .neumo-card,
+  .neumo-inset {
+    box-shadow: none !important;
+    border: 1px solid #e5e5e5 !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --shadow-soft: 0 0 0 1px currentColor;
+    --shadow: 0 0 0 2px currentColor;
+    --shadow-lg: 0 0 0 2px currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

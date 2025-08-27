@@ -1,51 +1,51 @@
 
 :root {
-  /* Base colors - Clay/Neumorphism theme */
-  --bg: hsl(30, 25%, 96%);
-  --surface: hsl(28, 40%, 97%);
-  --surface-2: hsl(25, 20%, 93%);
-  --surface-3: hsl(22, 15%, 89%);
+  /* Base colors - Dark Clay/Neumorphism theme */
+  --bg: #0f1115;
+  --surface: #17191f;
+  --surface-2: #14171c;
+  --surface-3: #1a1d23;
   
   /* Text colors */
-  --text: hsl(220, 13%, 18%);
-  --text-muted: hsl(220, 9%, 46%);
-  --text-soft: hsl(220, 9%, 64%);
+  --text: #e9e9ed;
+  --text-muted: #a3a6b0;
+  --text-soft: #777a84;
   
   /* Brand colors */
-  --brand: hsl(259, 100%, 68%);
-  --brand-600: hsl(259, 82%, 58%);
-  --brand-700: hsl(259, 70%, 48%);
-  --brand-soft: hsl(259, 100%, 95%);
+  --brand: #8b6cff;
+  --brand-600: #6d55e6;
+  --brand-700: #5542cc;
+  --brand-soft: rgba(139, 108, 255, 0.15);
   
   /* Accent colors */
-  --accent: hsl(169, 65%, 55%);
-  --accent-soft: hsl(169, 65%, 95%);
+  --accent: #4cd4bd;
+  --accent-soft: rgba(76, 212, 189, 0.15);
   
   /* Status colors */
-  --success: hsl(142, 76%, 36%);
-  --success-soft: hsl(142, 76%, 95%);
-  --warning: hsl(38, 92%, 50%);
-  --warning-soft: hsl(38, 92%, 95%);
-  --danger: hsl(0, 84%, 60%);
-  --danger-soft: hsl(0, 84%, 95%);
+  --success: #52c478;
+  --success-soft: rgba(82, 196, 120, 0.15);
+  --warning: #f7b36a;
+  --warning-soft: rgba(247, 179, 106, 0.15);
+  --danger: #ff6b6b;
+  --danger-soft: rgba(255, 107, 107, 0.15);
   
   /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
   --radius-full: 9999px;
   
-  /* Shadows - Neumorphism */
-  --shadow-soft: 0 2px 8px rgba(20, 20, 30, 0.04), 0 1px 3px rgba(20, 20, 30, 0.08);
-  --shadow: 0 4px 16px rgba(20, 20, 30, 0.08), 0 2px 6px rgba(20, 20, 30, 0.12);
-  --shadow-lg: 0 8px 24px rgba(20, 20, 30, 0.12), 0 4px 8px rgba(20, 20, 30, 0.16);
+  /* Shadows - Dark Neumorphism */
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+  --shadow: 0 10px 22px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.3);
   
-  /* Inset shadows for neumorphism */
-  --inset-1: inset 2px 2px 4px rgba(20, 20, 30, 0.06), inset -2px -2px 6px rgba(255, 255, 255, 0.85);
-  --inset-2: inset 3px 3px 6px rgba(20, 20, 30, 0.08), inset -3px -3px 8px rgba(255, 255, 255, 0.9);
-  --inset-deep: inset 6px 6px 12px rgba(20, 20, 30, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.95);
+  /* Inset shadows for dark neumorphism */
+  --inset-1: inset 2px 2px 4px rgba(0, 0, 0, 0.45), inset -2px -2px 5px rgba(255, 255, 255, 0.04);
+  --inset-2: inset 4px 4px 8px rgba(0, 0, 0, 0.55), inset -4px -4px 10px rgba(255, 255, 255, 0.05);
+  --inset-deep: inset 6px 6px 12px rgba(0, 0, 0, 0.65), inset -6px -6px 12px rgba(255, 255, 255, 0.06);
   
   /* Spacing scale */
   --space-1: 4px;
@@ -81,24 +81,24 @@
   --font-bold: 700;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+/* Light mode fallback (if needed) */
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: hsl(220, 13%, 8%);
-    --surface: hsl(220, 13%, 12%);
-    --surface-2: hsl(220, 13%, 16%);
-    --surface-3: hsl(220, 13%, 20%);
+    --bg: #f7efe9;
+    --surface: #fff6f0;
+    --surface-2: #f4e9e2;
+    --surface-3: #efebe4;
     
-    --text: hsl(220, 13%, 95%);
-    --text-muted: hsl(220, 9%, 70%);
-    --text-soft: hsl(220, 9%, 50%);
+    --text: #26262b;
+    --text-muted: #6b6b76;
+    --text-soft: #8a8a94;
     
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
-    --shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.6);
+    --shadow-soft: 0 2px 8px rgba(20, 20, 30, 0.04), 0 1px 3px rgba(20, 20, 30, 0.08);
+    --shadow: 0 4px 16px rgba(20, 20, 30, 0.08), 0 2px 6px rgba(20, 20, 30, 0.12);
+    --shadow-lg: 0 8px 24px rgba(20, 20, 30, 0.12), 0 4px 8px rgba(20, 20, 30, 0.16);
     
-    --inset-1: inset 2px 2px 4px rgba(0, 0, 0, 0.3), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
-    --inset-2: inset 3px 3px 6px rgba(0, 0, 0, 0.4), inset -3px -3px 8px rgba(255, 255, 255, 0.03);
-    --inset-deep: inset 6px 6px 12px rgba(0, 0, 0, 0.5), inset -6px -6px 12px rgba(255, 255, 255, 0.04);
+    --inset-1: inset 2px 2px 4px rgba(20, 20, 30, 0.06), inset -2px -2px 6px rgba(255, 255, 255, 0.85);
+    --inset-2: inset 3px 3px 6px rgba(20, 20, 30, 0.08), inset -3px -3px 8px rgba(255, 255, 255, 0.9);
+    --inset-deep: inset 6px 6px 12px rgba(20, 20, 30, 0.1), inset -6px -6px 12px rgba(255, 255, 255, 0.95);
   }
 }
